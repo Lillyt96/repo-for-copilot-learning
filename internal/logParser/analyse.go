@@ -10,7 +10,7 @@ type uniqueWithCount struct {
 func (l Logs) FindUniqueIPs() []string {
 	var ips []string
 
-	for _, log := range l.logs {
+	for _, log := range l.Logs {
 		ips = append(ips, log.Ip)
 	}
 
@@ -20,7 +20,7 @@ func (l Logs) FindUniqueIPs() []string {
 func (l Logs) FindTopNIPs(n int) []uniqueWithCount {
 	var ips []string
 
-	for _, log := range l.logs {
+	for _, log := range l.Logs {
 		ips = append(ips, log.Ip)
 	}
 
@@ -30,7 +30,7 @@ func (l Logs) FindTopNIPs(n int) []uniqueWithCount {
 func (l Logs) FindTopNUrls(n int) []uniqueWithCount {
 	var ips []string
 
-	for _, log := range l.logs {
+	for _, log := range l.Logs {
 		ips = append(ips, log.URL)
 	}
 
@@ -56,7 +56,7 @@ func findTopN(input []string, n int) []uniqueWithCount {
 		return uniquesCount[i].count > uniquesCount[j].count
 	})
 
-	if len(uniquesCount) < n {
+	if len(uniquesCount) < n || n == 0 {
 		return uniquesCount
 	}
 
